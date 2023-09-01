@@ -17,4 +17,22 @@ class Book extends Model
 		'stock',
 		'description'
 	];
+
+
+	// book->with(category, author)->get()
+	public function author()
+	{
+		return $this->belongsTo(Author::class, 'category_id', 'id');
+	}
+
+	public function category()
+	{
+		return $this->belongsTo(Category::class, 'author_id', 'id');
+	}
+
+	public function lends()
+	{
+		return $this->hasMany(Lend::class, 'book_id', 'id');
+	}
+
 }

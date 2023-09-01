@@ -18,4 +18,18 @@ class Lend extends Model
 		'date_in',
 		'status',
     ];
+
+
+	public function book()
+	{
+		return $this->belongsTo(Book::class, 'book_id', 'id');
+	}
+	public function owner()
+	{
+		return $this->belongsTo(User::class, 'owner_user_id', 'id');
+	}
+	public function customer()
+	{
+		return $this->belongsTo(User::class, 'customer_user_id', 'id');
+	}
 }
