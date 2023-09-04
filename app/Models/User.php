@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
     ];
 
+
 	// search the accesories that name make match with the name pass as attribute
 	protected $appends = ['full_name'];
 
