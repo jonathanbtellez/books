@@ -19,6 +19,7 @@ class UserController extends Controller
 
 	public function create()
 	{
+		return view();
 	}
 
 	public function store(UserRequest $request)
@@ -31,10 +32,13 @@ class UserController extends Controller
 		return response()->json([ 'status' => 'User created', 'user' => $user], 201);
 	}
 
+	public function edit()
+	{
+		return view();
+	}
 	public function show(Request $request, User $user)
 	{
 		if(!$request->ajax())return view();
-
 		return response()->json([ 'user' => $user], 200);
 	}
 

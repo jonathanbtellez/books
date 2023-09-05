@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +28,28 @@ Route::group(['prefix' => 'users', 'controller' => UserController::class], funct
 	Route::get('/{user}','show');
 	Route::put('/{user}', 'update');
 	Route::delete('/{user}', 'destroy');
+});
+
+Route::group(['prefix' => 'books', 'controller' => BookController::class], function (){
+	Route::get('/','index');
+	Route::post('/', 'store');
+	Route::get('/{book}','show');
+	Route::put('/{book}', 'update');
+	Route::delete('/{book}', 'destroy');
+});
+
+Route::group(['prefix' => 'categories', 'controller' => CategoryController::class], function (){
+	Route::get('/','index');
+	Route::post('/', 'store');
+	Route::get('/{category}','show');
+	Route::put('/{category}', 'update');
+	Route::delete('/{category}', 'destroy');
+});
+
+Route::group(['prefix' => 'authors', 'controller' => AuthorController::class], function (){
+	Route::get('/','index');
+	Route::post('/', 'store');
+	Route::get('/{author}','show');
+	Route::put('/{author}', 'update');
+	Route::delete('/{author}', 'destroy');
 });
