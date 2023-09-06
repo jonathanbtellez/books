@@ -1,7 +1,7 @@
 {{-- Menu --}}
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Biblioteca Central</a>
+        <a class="navbar-brand" href="{{ url('/') }}">{{env('APP_NAME')}}</a>
 
         {{-- Haburguesa --}}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -9,7 +9,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse bg-light" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
 
@@ -31,29 +31,17 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                    <li class="nav-item dropdown bg-light">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle bg-light" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->full_name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            @role('admin')
-                                {{-- Users --}}
-                                <a class="dropdown-item" href="{{ route('users') }}">Usuarios</a>
-
-                                {{-- Books --}}
-                                <a class="dropdown-item" href="{{ route('books') }}">Libros</a>
-                            @endrole
-
                             {{-- Logout --}}
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item bg-light" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
                             </a>
-
-                            {{-- Category Products --}}
-                            <a class="dropdown-item" href="/category-products/index">Category Products</a>
-
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

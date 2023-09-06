@@ -1,10 +1,10 @@
-@extends('layouts.app')
+<x-app title="login">
+	<section class="d-flex flex-wrap justify-content-around text-center">
 
-@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card bg-light">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -41,7 +41,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
+                                <div class="form-check d-flex gap-2">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
@@ -69,5 +69,5 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+    </section>
+</x-app>

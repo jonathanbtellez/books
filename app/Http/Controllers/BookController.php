@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
 		$books  = Book::get();
 
+		//Use  web
+		if(!$request->ajax())return view('index', compact('books'));
+
+		// Use api
 		return response()->json([ 'books' => $books], 200);
 	}
 

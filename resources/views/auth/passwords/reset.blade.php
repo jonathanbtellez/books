@@ -1,10 +1,8 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app title="reset">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card bg-light">
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
@@ -17,7 +15,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="hidden" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -62,4 +60,4 @@
         </div>
     </div>
 </div>
-@endsection
+</x-app>
