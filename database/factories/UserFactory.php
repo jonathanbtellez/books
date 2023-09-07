@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -26,4 +27,14 @@ class UserFactory extends Factory
             'remember_token' => Str::random(30),
         ];
     }
+
+	public function configure(){
+		return $this->afterCreating(function (User $user){
+			if($user->id % 2 !== 0){
+				$user->assignRole('user');
+			}else{
+				$user->assignRole('admin');
+			}
+		});
+	}
 }

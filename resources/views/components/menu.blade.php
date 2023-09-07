@@ -1,7 +1,7 @@
 {{-- Menu --}}
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">{{env('APP_NAME')}}</a>
+        <a class="navbar-brand" href="{{ url('/') }}">{{ env('APP_NAME') }}</a>
 
         {{-- Haburguesa --}}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -38,13 +38,17 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            {{-- Logout --}}
-                            <a class="dropdown-item bg-light" href="{{ route('logout') }}"
+
+                            @role('admin')
+                                <a class="dropdown-item bg-light" href="{{ route('user.index') }}">Users
+                                </a>
+                            @endrole
+                            <a type="submit" class="dropdown-item bg-light" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
+                                {{-- Logout --}}
                             </form>
                         </div>
 

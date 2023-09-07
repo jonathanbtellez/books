@@ -15,15 +15,21 @@
                                 <th scope="col">identification</th>
                                 <th scope="col">full name</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Role</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="align-">
                             @forelse ($users as $user)
                                 <tr>
                                     <th scope="row">{{ $user->number_id }}</th>
                                     <td>{{ $user->full_name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>
+										@foreach ($user->roles as $role)
+											{{$role->name}}
+										@endforeach
+									</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
                                             <a  href="{{route('user.edit', $user)}}" class="btn btn-warning btn-sm">edit

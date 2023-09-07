@@ -17,14 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [BookController::class, 'index']);
+Route::get('/', [BookController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 Route::group(['middleware' => ['auth']], function () {
-	Route::group(['prefix' => 'users'], function () {
+	Route::group(['prefix' => 'users', 'middleware' => ['role:admin']], function () {
 		Route::get('/', [UserController::class, 'index'])->name('user.index');
 		Route::get('/create', [UserController::class, 'create'])->name('user.create');
 		Route::post('/store', [UserController::class, 'store'])->name('user.store');

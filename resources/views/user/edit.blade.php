@@ -12,7 +12,7 @@
                 <form method="POST" action="{{ route('user.edit', $user) }}" novalidate>
                     @method('PUT')
                     @csrf
-                    <x-users.form :$user>Edit</x-users.form>
+                    <x-users.form :$user :$roles>Edit</x-users.form>
                 </form>
             </div>
         </div>

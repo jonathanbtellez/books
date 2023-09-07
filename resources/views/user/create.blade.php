@@ -10,7 +10,7 @@
             <div class="card-body">
                 <form method="POST" action="{{ route('user.store') }}" novalidate>
                     @csrf
-                    <x-users.form>Create</x-users.form>
+                    <x-users.form :$roles>Create</x-users.form>
                     </div>
                 </form>
             </div>

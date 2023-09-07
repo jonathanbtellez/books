@@ -12,7 +12,8 @@ class form extends Component
      * Create a new component instance.
      */
     public function __construct(
-		public array $user
+		public array $user,
+		public array $roles
 	)
     {
         //
@@ -24,6 +25,6 @@ class form extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.users.form', compact('user'));
+        return view('components.users.form', compact('user','roles'));
     }
 }
