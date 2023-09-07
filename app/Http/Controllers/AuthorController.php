@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Author\AuthorRequest;
 use App\Models\Author;
+use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
 		$authors = Author::get();
-
+		if (!$request->ajax()) return view('authors.index', compact('authors'));
 		return response()->json([ 'authors' => $authors], 200);
 	}
 

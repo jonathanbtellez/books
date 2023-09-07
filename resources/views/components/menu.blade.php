@@ -40,9 +40,25 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                             @role('admin')
-                                <a class="dropdown-item bg-light" href="{{ route('user.index') }}">Users
+                                {{-- users --}}
+                                <a class="dropdown-item bg-light" href="{{ route('users.index') }}">Users
                                 </a>
                             @endrole
+                            @role('admin|librarian')
+                                {{-- Books --}}
+                                <a class="dropdown-item bg-light" href="{{ route('books.index') }}">Books
+                                </a>
+                            @endrole
+                            @can('categories.index')
+								{{-- Category --}}
+                                <a class="dropdown-item bg-light" href="{{ route('categories.index') }}">Categories
+                                </a>
+                            @endcan
+							@can('authors.index')
+							{{-- Category --}}
+							<a class="dropdown-item bg-light" href="{{ route('authors.index') }}">Authors
+							</a>
+						@endcan
                             <a type="submit" class="dropdown-item bg-light" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
                             </a>

@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Author;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +16,7 @@ class DatabaseSeeder extends Seeder
 	{
 		$this->call([
 			CategorySeeder::class,
-			RoleSeeder::class,
+			RoleAndPermissionSeeder::class,
 			UserSeeder::class,
 		]);
 		Author::factory(20)->create();

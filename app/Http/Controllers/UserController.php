@@ -29,7 +29,7 @@ class UserController extends Controller
 		$user = new User($request->all());
 		$user->save();
 		$user->assignRole($request->role);
-		if (!$request->ajax()) return redirect(route('user.index'))->with('success', 'User created');
+		if (!$request->ajax()) return redirect(route('users.index'))->with('success', 'User created');
 
 		return response()->json(['status' => 'User created', 'user' => $user], 201);
 	}
@@ -37,7 +37,7 @@ class UserController extends Controller
 	public function edit(User $user)
 	{
 		$roles = Role::all()->pluck('name');
-		return view('user.edit', compact('user','roles'));
+		return view('users.edit', compact('user','roles'));
 	}
 
 	public function show(Request $request, User $user)
@@ -50,7 +50,7 @@ class UserController extends Controller
 	{
 		$user->update($request->all());
 		$user->syncRoles([$request->role]);
-		if (!$request->ajax()) return redirect(route('user.index'))->with('success', 'User update');
+		if (!$request->ajax()) return redirect(route('users.index'))->with('success', 'User update');
 		return response()->json([], 204);
 	}
 
@@ -58,7 +58,7 @@ class UserController extends Controller
 	public function destroy(Request $request, User $user)
 	{
 		$user->delete();
-		if (!$request->ajax()) return redirect(route('user.index'))->with('success', 'User deleted');
+		if (!$request->ajax()) return redirect(route('users.index'))->with('success', 'User deleted');
 		return response()->json([], 204);
 	}
 }

@@ -13,7 +13,7 @@ class BookController extends Controller
 		$books  = Book::get();
 
 		//Use  web
-		if(!$request->ajax())return view('index', compact('books'));
+		if(!$request->ajax())return view('books.index', compact('books'));
 
 		// Use api
 		return response()->json([ 'books' => $books], 200);

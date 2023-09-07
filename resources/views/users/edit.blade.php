@@ -5,11 +5,11 @@
 	<section class="my-3 d-flex justify-content-center text-center">
         <div class="card bg-light row col-md-8">
             <div class="card-header d-flex justify-content-end">
-                <a href={{ route('user.index') }} class="btn btn-secondary">Regresar</a>
+                <a href={{ route('users.index') }} class="btn btn-secondary">Regresar</a>
             </div>
             <div class="card-body">
 
-                <form method="POST" action="{{ route('user.edit', $user) }}" novalidate>
+                <form method="POST" action="{{ route('users.edit', $user) }}" novalidate>
                     @method('PUT')
                     @csrf
                     <x-users.form :$user :$roles>Edit</x-users.form>

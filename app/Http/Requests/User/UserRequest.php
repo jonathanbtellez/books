@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
 			array_push($rules['password'], 'confirmed');
 		}else{
 			array_push($rules['number_id'], 'unique:users,number_id,'.$this->user->id);
-			array_push($rules['email'], 'unique:users,email,'.$this->user->id);
+			array_push($rules['email'], 'unique:users,email,librarian'.$this->user->id);
 		}
 
 		if($this->path() != 'api/register'){

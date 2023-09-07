@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
 	{
 		$categories  = Category::get();
-
+		if (!$request->ajax()) return view('categories.index', compact('categories'));
 		return response()->json([ 'categories' => $categories], 200);
 	}
 
