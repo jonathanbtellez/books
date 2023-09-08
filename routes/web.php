@@ -21,9 +21,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get('/', HomeController::class)->name('home');
 
 // user
 Route::group(['middleware' => ['auth']], function () {
+
 	Route::group(['prefix' => 'users', 'middleware' => ['role:admin'], 'controller' => UserController::class], function () {
 		Route::get('/', 'index')->name('users.index')->middleware('can:users.index');
 		Route::get('/create', 'create')->name('users.create')->middleware('can:users.create');

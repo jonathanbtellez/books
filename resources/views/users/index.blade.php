@@ -1,3 +1,4 @@
+
 <x-app title="Users">
     <section class="my-2 text-center">
         <h1>User list</h1>
@@ -6,7 +7,7 @@
         <div class="container">
             <div class="card bg-light">
                 <div class="card-header d-flex justify-content-end">
-                    <a href={{route('user.create')}} class="btn btn-primary">Create user</a>
+                    <a href={{route('users.create')}} class="btn btn-primary">Create user</a>
                 </div>
                 <div class="card-body table-responsive">
                     <table class="table table-bordered table-striped table-hover table-light ">
@@ -32,12 +33,12 @@
 									</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <a  href="{{route('user.edit', $user)}}" class="btn btn-warning btn-sm">edit
+                                            <a  href="{{route('users.edit', $user)}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></i>
 											</a>
-											<form action="{{route('user.destroy', $user)}}" method="POST">
+											<form action="{{route('users.destroy', $user)}}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="submit" class="btn btn-danger btn-sm">delete
+												<button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>
 												</button>
 											</form>
                                         </div>

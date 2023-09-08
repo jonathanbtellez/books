@@ -27,11 +27,12 @@ class AuthUserApiController extends Controller
 		return response()->json($this->handleMessage(200, $data), 200);
 	}
 
-	public function logout()
+	public function logout(Request $request)
 	{
 		/** @var \App\Models\User\User $user */
 		$user  = Auth::user();
 		$user->tokens()->delete();
+		if (!$request->ajax()) return view('/');
 		return response()->json([], 204);
 	}
 	public function profile()

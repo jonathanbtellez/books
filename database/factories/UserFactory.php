@@ -30,10 +30,12 @@ class UserFactory extends Factory
 
 	public function configure(){
 		return $this->afterCreating(function (User $user){
-			if($user->id % 2 !== 0){
+			if($user->id % 2 === 0){
 				$user->assignRole('user');
-			}else{
+			}else if ($user->id % 3 === 0 && $user->id % 2 === 0){
 				$user->assignRole('admin');
+			}else{
+				$user->assignRole('librarian');
 			}
 		});
 	}

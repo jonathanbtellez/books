@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	});
 
 	Route::group(['prefix' => 'categories', 'controller' => CategoryController::class], function () {
-		Route::get('/', 'index');
+		Route::get('/', 'index')->middleware('can:categories.index');
 		Route::post('/', 'store');
 		Route::get('/{category}', 'show');
 		Route::put('/{category}', 'update');

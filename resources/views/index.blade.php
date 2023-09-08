@@ -14,7 +14,7 @@
                     <p>{{ $book->description }}</p>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-outline-primary">Solicitar</button>
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary">Solicitar</a>
                 </div>
             </div>
         @endforeach

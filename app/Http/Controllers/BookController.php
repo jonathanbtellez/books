@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Book\BookRequest;
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -10,19 +11,15 @@ class BookController extends Controller
 {
 	public function index(Request $request)
 	{
-		$books  = Book::get();
+		$books = Book::with('author', 'category')->get();
 
+		$authors = Author::get();
 		//Use  web
-		if(!$request->ajax())return view('books.index', compact('books'));
+		if(!$request->ajax())return view('books.index', compact('books','authors'));
 
 		// Use api
 		return response()->json([ 'books' => $books], 200);
 	}
-
-	// public function create()
-	// {
-	// 	return view();
-	// }
 
 	public function store(BookRequest $request)
 	{
@@ -32,10 +29,6 @@ class BookController extends Controller
 		return response()->json([ 'status' => 'book created', 'book' => $book], 201);
 	}
 
-	// public function edit()
-	// {
-	// 	return view();
-	// }
 	public function show(Book $book)
 	{
 		return response()->json([ 'book' => $book], 200);

@@ -1,5 +1,5 @@
 {{-- Menu --}}
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">{{ env('APP_NAME') }}</a>
 
@@ -37,18 +37,18 @@
                             {{ Auth::user()->full_name }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-end bg-light" aria-labelledby="navbarDropdown">
 
                             @role('admin')
                                 {{-- users --}}
                                 <a class="dropdown-item bg-light" href="{{ route('users.index') }}">Users
                                 </a>
                             @endrole
-                            @role('admin|librarian')
+                            @can('books.index')
                                 {{-- Books --}}
                                 <a class="dropdown-item bg-light" href="{{ route('books.index') }}">Books
                                 </a>
-                            @endrole
+                            @endcan
                             @can('categories.index')
 								{{-- Category --}}
                                 <a class="dropdown-item bg-light" href="{{ route('categories.index') }}">Categories

@@ -13,7 +13,7 @@ class UserController extends Controller
 	{
 		$users  = User::with('roles')->get();
 
-		if (!$request->ajax()) return view('user.index', compact('users'));
+		if (!$request->ajax()) return view('users.index', compact('users'));
 
 		return response()->json(['users' => $users], 200);
 	}

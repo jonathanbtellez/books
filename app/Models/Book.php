@@ -22,12 +22,12 @@ class Book extends Model
 	// book->with(category, author)->get()
 	public function author()
 	{
-		return $this->belongsTo(Author::class, 'category_id', 'id');
+		return $this->belongsTo(Author::class, 'author_id', 'id');
 	}
 
 	public function category()
 	{
-		return $this->belongsTo(Category::class, 'author_id', 'id');
+		return $this->belongsTo(Category::class, 'category_id', 'id');
 	}
 
 	public function lends()
