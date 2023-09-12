@@ -40,7 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/create', 'create')->name('books.create')->middleware('can:books.create');
 		Route::post('/store', 'store')->name('books.store')->middleware('can:books.store');
 		Route::get('/{book}', 'edit')->name('books.edit')->middleware('can:books.edit');
-		Route::put('/{book}', 'update')->name('books.update')->middleware('can:books.update');
+		// Route::put('/{book}', 'update')->name('books.update')->middleware('can:books.update');
+		// When we use a form data in the from we need use a post method in our backend
+		Route::post('/{book}', 'update')->name('books.update')->middleware('can:books.update');
 		Route::delete('/{book}', 'destroy')->name('books.destroy')->middleware('can:books.destroy');
 	});
 

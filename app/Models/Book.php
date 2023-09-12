@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
@@ -18,6 +20,18 @@ class Book extends Model
 		'description'
 	];
 
+	protected $appends = ['format_description'];
+
+	// Accesor
+	public function formatDescription(): Attribute
+	{
+		return Attribute::make(
+			get: function ($value, $attributes) {
+				return Str::limit($attributes['description'], 80,  '...');
+			},
+			// set: fn ($value) => Str::upper($value)
+		);
+	}
 
 	// book->with(category, author)->get()
 	public function author()
@@ -33,6 +47,11 @@ class Book extends Model
 	public function lends()
 	{
 		return $this->hasMany(Lend::class, 'book_id', 'id');
+	}
+
+	public function file()
+	{
+		return $this->morphOne(File::class,'fileable');
 	}
 
 }

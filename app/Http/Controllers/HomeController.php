@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function __invoke()
     {
-		$books = Book::get();
+		$books = Book::with('author','category','file')->get();
         return view('index', compact('books'));
     }
 }

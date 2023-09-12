@@ -13,7 +13,7 @@ class BookRequest extends FormRequest
 		'stock' => ['required', 'numeric'],
 		'author_id' => ['required', 'exists:authors,id'],
 		'category_id' => ['required', 'exists:categories,id'],
-		// 'file' => ['required', 'image']
+		'file' => ['required', 'image']
 	];
 
 	public function authorize()
