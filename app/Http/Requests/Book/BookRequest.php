@@ -6,24 +6,41 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BookRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize()
-    {
-        return true;
-    }
 
+	protected $rules = [
+		'name' => ['required', 'string'],
+		'description' => ['required', 'string'],
+		'stock' => ['required', 'numeric'],
+		'author_id' => ['required', 'exists:authors,id'],
+		'category_id' => ['required', 'exists:categories,id'],
+		// 'file' => ['required', 'image']
+	];
 
-    public function rules()
-    {
-		$rules = [
-			'category_id' => ['required', 'exists:categories,id'],
-			'author_id' => ['required', 'exists:authors,id'],
-			'name' => ['required'],
-			'stock' => ['required', 'numeric'],
-			'description' => ['max:255']
+	public function authorize()
+	{
+		return true;
+	}
+
+	public function rules()
+	{
+		return  $this->rules;
+	}
+
+	public function messages()
+	{
+		return [
+			'name.required' => 'El titulo es requerido.',
+			'name.string' => 'El nombre debe de ser valido.',
+			'description.required' => 'La descripcion es requerida.',
+			'description.string' => 'La descripcion debe de ser valida.',
+			'stock.required' => 'La cantidad es requerida.',
+			'stock.numeric' => 'La cantidad debe de ser un numero valido.',
+			'author_id.required' => 'El autor es requerido.',
+			'author_id.exists' => 'El autor no existe.',
+			'category_id.required' => 'La categoria es requerida.',
+			'category_id.exists' => 'La categoria no existe.',
+			'file.required' => 'La imagen es requerida.',
+			'file.image' => 'El archivo debe de ser una imagen valida.',
 		];
-		return $rules;
 	}
 }
