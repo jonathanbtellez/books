@@ -10,6 +10,8 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
+
 class BookController extends Controller
 {
 	use UploadFile;
@@ -23,23 +25,22 @@ class BookController extends Controller
 
 		// Use api
 		return response()->json(['books' => $books], 200);
-
-		//throw $th;
-
 	}
 
 	public function store(BookRequest $request)
 	{
-		try {			// Handel insertions using transactions
+		try {
+			// Handel insertions using transactions
 			DB::beginTransaction();
 			$book = new Book($request->all());
 			$book->save();
-			$this->uploadImage($book, $request);
+			$this->uploadFile($book, $request);
 			DB::commit();
 			return response()->json(['status' => 'book created', 'book' => $book], 201);
 		} catch (\Throwable $th) {
 			//throw $th;
 			DB::rollBack();
+			throw $th;
 		}
 	}
 
@@ -54,7 +55,7 @@ class BookController extends Controller
 			// Handel insertions using transactions
 			DB::beginTransaction();
 			$book->update($request->all());
-			$this->uploadImage($book, $request);
+			$this->uploadFile($book, $request);
 			DB::commit();
 			return response()->json([], 204);
 		} catch (\Throwable $th) {

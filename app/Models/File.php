@@ -9,11 +9,13 @@ class File extends Model
 {
     use HasFactory;
 
-	protected $filleable = [
-		'fileable_id',
-		'fileable_type',
-		'route'
-	];
+
+	protected $guarded = [];
+	// protected $filleable = [
+	// 	'route',
+	// 	'fileable_id',
+	// 	'fileable_type',
+	// ];
 
 	public function fileable(){
 		return $this->morphTo();

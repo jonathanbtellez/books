@@ -29,13 +29,12 @@ class BookFactory extends Factory
             'name'=> fake()->sentence(),
             'stock'=> fake()->randomDigit(),
 			'description'=> fake()->paragraph(),
-
         ];
     }
 
 	public function configure(){
 		return $this->afterCreating(function (Book $book){
-			$file = new File(['route'=> '/storage/images/books/default.png']);
+			$file = new File(['route' => '/storage/images/books/default.png']);
 			$book->file()->save($file);
 		});
 	}

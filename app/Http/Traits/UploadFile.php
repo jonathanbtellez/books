@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File as FileSystem;
 
 trait UploadFile
 {
-	private function uploadImage($model, $request)
+	private function uploadFile($model, $request)
 	{
 		if (!isset($request->file)) return;
 		$random = Str::random(20);
@@ -20,7 +20,6 @@ trait UploadFile
 		$request->file->move(storage_path("app/public/{$path}"), $imageName);
 		$file = new File(['route' => "/storage/{$path}/{$imageName}"]);
 		$model->file()->save($file);
-		return response()->json($model, 200);
 	}
 
 	private function deleteFile($model)

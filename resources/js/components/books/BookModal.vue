@@ -181,7 +181,6 @@ export default {
 				this.book.category_id = this.category
 				this.book.author_id = this.author
 				const book = this.createFormData(this.book)
-				console.log(book);
 				if (this.is_created) {
 					await axios.post('/books/store', book)
 				} else {

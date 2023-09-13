@@ -5,7 +5,7 @@
     <section class="d-flex flex-wrap justify-content-around text-start align-content-around">
         @foreach ($books as $book)
             <div class="card m-2 my-3 card_size d-flex">
-                <img class="card-img-top" src="{{ asset($book->file->route) }}" alt="Image face">
+                <img class="card-img-top" src="{{ $book->file->route }}" alt="Image face">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold">{{ $book->name }}</h5>
                     <p class="card-text">{{ $book->formatDescription }}</p>
