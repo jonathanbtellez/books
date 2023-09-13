@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -20,7 +19,10 @@ class HomeController extends Controller
      */
     public function __invoke()
     {
-		$books = Book::with('author','category','file')->get();
+		$books = Book::with('author','category','file')
+			->whereHas('category')
+			->where('stock', '>', 0 )
+			->get();
         return view('index', compact('books'));
     }
 }

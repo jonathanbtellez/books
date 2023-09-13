@@ -6,7 +6,10 @@ import BackendError from "./components/Components/BackendError.vue";
 const app = createApp({
   components: {
     BooksList: defineAsyncComponent(() =>
-      import("@/components/books/BooksList.vue")
+      import("@/components/book/BooksList.vue")
+    ),
+    CategoriesList: defineAsyncComponent(() =>
+      import("@/components/category/CategoriesList.vue")
     ),
   },
 });

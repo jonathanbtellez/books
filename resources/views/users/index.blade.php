@@ -1,4 +1,3 @@
-
 <x-app title="Users">
     <section class="my-2 text-center">
         <h1>User list</h1>
@@ -7,10 +6,10 @@
         <div class="container">
             <div class="card bg-light">
                 <div class="card-header d-flex justify-content-end">
-                    <a href={{route('users.create')}} class="btn btn-primary">Create user</a>
+                    <a href={{ route('users.create') }} class="btn btn-primary">Create user</a>
                 </div>
                 <div class="card-body table-responsive">
-                    <table class="table table-bordered table-striped table-hover table-light ">
+                    <table class="table table-bordered table-striped table-hover table-light " id="users_table">
                         <thead class="text-center">
                             <tr>
                                 <th scope="col">identification</th>
@@ -27,20 +26,26 @@
                                     <td>{{ $user->full_name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-										@foreach ($user->roles as $role)
-											{{$role->name}}
-										@endforeach
-									</td>
+                                        @foreach ($user->roles as $role)
+                                            {{ $role->name }}
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <a  href="{{route('users.edit', $user)}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pencil"></i></i>
-											</a>
-											<form action="{{route('users.destroy', $user)}}" method="POST">
-												@csrf
-												@method('DELETE')
-												<button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>
-												</button>
-											</form>
+                                            <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm"><i
+                                                    class="fa-solid fa-pencil"></i></i>
+                                            </a>
+                                            <button class="ms-2 btn btn-danger btn-sm"
+                                                onclick="deleteForm({{ $user->id }})">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+
+                                            <form id="delete_form_{{ $user->id }}"
+                                                action="{{ route('users.destroy', $user) }}"
+                                                method="POST" >
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -54,4 +59,27 @@
 
         </div>
     </section>
+    {{-- use a second slot --}}
+    <x-slot:scripts>
+        <script>
+            // Wait to document will be ready
+            // Execute loadDataTable Function
+            document.addEventListener('DOMContentLoaded', loadDataTable)
+
+            // Code to run datatable
+            function loadDataTable() {
+                $('#users_table').DataTable()
+            }
+
+			async function deleteForm(user_id) {
+                const response = await Swal.fire({
+                    icon: 'warning',
+                    title: 'Esta seguro de eliminar?',
+                    showCancelButton: true
+                })
+                if (!response.isConfirmed) return
+                document.getElementById(`delete_form_${user_id}`).submit();
+            };
+        </script>
+    </x-slot:scripts>
 </x-app>
