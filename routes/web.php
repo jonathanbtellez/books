@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/get-all-dt', 'getAll')->name('categories.get-all-dt')->middleware('can:categories.get-all-dt');
 		Route::get('/create', 'create')->name('categories.create')->middleware('can:categories.create');
 		Route::post('/store', 'store')->name('categories.store')->middleware('can:categories.store');
-		Route::get('/{category}', 'edit')->name('categories.edit')->middleware('can:categories.edit');
+		Route::get('/{category}', 'show')->name('categories.show')->middleware('can:categories.show');
 		Route::put('/{category}', 'update')->name('categories.update')->middleware('can:categories.update');
 		Route::delete('/{category}', 'destroy')->name('categories.destroy')->middleware('can:categories.destroy');
 	});
