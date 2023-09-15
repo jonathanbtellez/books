@@ -60,9 +60,10 @@ Route::group(['middleware' => ['auth']], function () {
 	// Author
 	Route::group(['prefix' => 'authors', 'controller' => AuthorController::class], function () {
 		Route::get('/', 'index')->name('authors.index')->middleware('can:authors.index');
+		Route::get('/get-all-dt', 'getAllDt')->name('authors.get-all-dt')->middleware('can:authors.get-all-dt');
 		Route::get('/create', 'create')->name('authors.create')->middleware('can:authors.create');
 		Route::post('/store', 'store')->name('authors.store')->middleware('can:authors.store');
-		Route::get('/{author}', 'edit')->name('authors.edit')->middleware('can:authors.edit');
+		Route::get('/{author}', 'show')->name('authors.show')->middleware('can:authors.show');
 		Route::put('/{author}', 'update')->name('authors.update')->middleware('can:authors.update');
 		Route::delete('/{author}', 'destroy')->name('authors.destroy')->middleware('can:authors.destroy');
 	});

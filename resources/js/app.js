@@ -11,6 +11,9 @@ const app = createApp({
     CategoriesList: defineAsyncComponent(() =>
       import("@/components/category/CategoriesList.vue")
     ),
+    AuthorList: defineAsyncComponent(() =>
+      import("@/components/author/AuthorList.vue")
+    ),
   },
 });
 

@@ -223,3 +223,13 @@ export default {
 }
 </script>
 <style></style>
+
+Home
+//image precio nombre descripciioon stock
+
+<!-- Category -->
+5 productos
+//image precio nombre descripciioon stock
+
+
+pagina del producto

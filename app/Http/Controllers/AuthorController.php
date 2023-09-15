@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Author\AuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class AuthorController extends Controller
 {
@@ -13,6 +14,12 @@ class AuthorController extends Controller
 		$authors = Author::get();
 		if (!$request->ajax()) return view('authors.index', compact('authors'));
 		return response()->json([ 'authors' => $authors], 200);
+	}
+
+	public function getAllDt()
+	{
+		$authors = Author::query();
+		return DataTables::of($authors)->toJson();
 	}
 
 	// public function create()

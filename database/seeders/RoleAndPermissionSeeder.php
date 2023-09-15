@@ -28,9 +28,10 @@ class RoleAndPermissionSeeder extends Seeder
 			'categories.update',
 			'categories.destroy',
 			'authors.index',
+			'authors.show',
+			'authors.get-all-dt',
 			'authors.create',
 			'authors.store',
-			'authors.edit',
 			'authors.update',
 			'authors.destroy',
 		];
@@ -48,7 +49,6 @@ class RoleAndPermissionSeeder extends Seeder
 			'books.index',
 			'categories.index',
 			'authors.index',
-
 		];
 
 		// Roles
